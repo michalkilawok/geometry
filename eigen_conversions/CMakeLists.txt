@@ -3,9 +3,11 @@ project(eigen_conversions)
 
 find_package(orocos_kdl REQUIRED)
 find_package(catkin REQUIRED cmake_modules geometry_msgs std_msgs)
-find_package(Eigen REQUIRED)
 
-include_directories(SYSTEM ${EIGEN_INCLUDE_DIRS})
+find_package(PkgConfig)
+pkg_search_module(Eigen3 REQUIRED eigen3)
+
+include_directories(SYSTEM ${Eigen3_INCLUDE_DIRS})
 include_directories(include ${catkin_INCLUDE_DIRS} ${orocos_kdl_INCLUDE_DIRS})
 link_directories(${catkin_LIBRARY_DIRS})
 link_directories(${orocos_kdl_LIBRARY_DIRS})
